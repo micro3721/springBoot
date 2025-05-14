@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -251,51 +250,17 @@ public class HelloController {
     /**
      * DTO for returning bubble sort results.
      */
-    static class SortResponse {
-        private final List<Integer> original;
-        private final List<Integer> sorted;
-
-        public SortResponse(List<Integer> original, List<Integer> sorted) {
-            this.original = original;
-            this.sorted = sorted;
-        }
-
-        // Getters are required for Jackson (Spring's default JSON library) to serialize the object
-        public List<Integer> getOriginal() {
-            return original;
-        }
-
-        public List<Integer> getSorted() {
-            return sorted;
-        }
+    public record SortResponse(List<Integer> original, List<Integer> sorted) {
     }
 
     /**
      * DTO for returning Fibonacci calculation results or errors.
+     *
+     * @param n      Input n
+     * @param result Result (null if error)
+     * @param error  Error message (null if success)
      */
-    static class FibonacciResponse {
-        private final int n; // Input n
-        private final Long result; // Result (null if error)
-        private final String error; // Error message (null if success)
-
-        public FibonacciResponse(int n, Long result, String error) {
-            this.n = n;
-            this.result = result;
-            this.error = error;
-        }
-
-        // Getters
-        public int getN() {
-            return n;
-        }
-
-        public Long getResult() {
-            return result;
-        }
-
-        public String getError() {
-            return error;
-        }
+    public record FibonacciResponse(int n, Long result, String error) {
 
         /**
          * Helper method to easily check status in frontend (not serialized)
@@ -309,40 +274,6 @@ public class HelloController {
     /**
      * DTO for returning statistics calculation results.
      */
-    static class StatsResponse {
-        private final int count;
-        private final double sum;
-        private final double average;
-        private final double min;
-        private final double max;
-
-        public StatsResponse(int count, double sum, double average, double min, double max) {
-            this.count = count;
-            this.sum = sum;
-            this.average = average;
-            this.min = min;
-            this.max = max;
-        }
-
-        // Getters
-        public int getCount() {
-            return count;
-        }
-
-        public double getSum() {
-            return sum;
-        }
-
-        public double getAverage() {
-            return average;
-        }
-
-        public double getMin() {
-            return min;
-        }
-
-        public double getMax() {
-            return max;
-        }
+    public record StatsResponse(int count, double sum, double average, double min, double max) {
     }
 }

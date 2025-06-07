@@ -9,13 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * REST Controller handling various web requests for demonstration.
- * Includes examples of GET, POST, Path Variables, Request Parameters,
- * JSON request/response bodies, and basic error handling.
- */
-// Allow requests from the Vite React dev server (adjust port if necessary)
-@CrossOrigin(origins = "http://localhost:5173")
+
 @RestController // Marks this class as a REST controller (combines @Controller and @ResponseBody)
 public class HelloController {
 
